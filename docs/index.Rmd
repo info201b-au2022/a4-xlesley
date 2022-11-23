@@ -1,45 +1,97 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
-date: '2022-11-01'
+title: "Analysis on Jail Population of states in West Region"
+author: "Lesley Xu"
+date: '2022-11-21'
 output: html_document
 ---
 
-```{r echo=FALSE, eval=TRUE, message=FALSE}
+```{r echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 source("../source/a4-helpers.R")
 source("../source/analysis.R")
 ```
 
 ## Abstract 
-[TODO: Include a short abstract (about 50 words)]
-
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
-```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
-
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
-
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
-
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
-```
+The report will focus on finding patterns of inequality regarding the data set of incarceration in United States from 1970 to 2018. 
 
 ## Introduction 
-[TODO]
+According to Vera Institute, people of lower social status, such as people of color, immigrants, and people experiencing poverty, are experiencing overcriminalization and racial disparities. My report will focus mainly on the jail population and related statistics of the states in west regions: California, Washington, and Oregon. Through my analysis of jail population from year to year, state to state, and the demographics of the jail population, I want to answer the questions below: 
+
++ Questions: 
+1. What is the trend of jail popoulation growth from 1970 in United States? 
+2. What is the mean jail population value for each race in United States?
+3. Is the total jail population in U.S. increasing or decreasing over time?
+4. Among states in west region, which state has the highest total jail population?
+5. Is the pattern of jail population growth for states in the same region similar or not?
+6. Which county has the lowest black prison admission count among those three states?
+
+>"More than 80% of all arrests are for low-level, nonviolent offenses and conduct related to poverty. "  
+
+Considering the questions above, I want to find out if certain races have a higher chance of getting into jail or prison. I want to find out which state exists an inequality of jail or prison population patterns. In section 5, I discovered that Oregon has the highest black jail population. However, California has the highest prison admission count. This might be related to the economic level of each state. California has a higher GDP per capita than Oregon. 
 
 ## Data Summary 
-[TODO]
 
-[TODO ... other sections ... See Canvas for details]
+#### Section 2 
 
-_All the very best with your work!_
+```{r section 2 values calculated, echo=FALSE, message=FALSE, warning=FALSE, paged.print = FALSE}
+knitr::kable(summary_info, align = "c")
+```
 
+I get the average value of the jail population for females and males. The average value of the female jail population is 18.21, while the average value of the male jail population is 143.61. Comparing those two values, it is reasonable to infer that the jail population for males is significantly higher than for females across the counties according to the average value I calculated. There is "inequality" lying where females commit fewer crimes than males do. 
+
+I calculated the highest and lowest total jail population in Washington. From 1970 to 2018, King county had the highest total jail population: 3322, while both Columbia County and Garfield County had the lowest total jail population of 0. This result made me think of the reasons causing this difference: King county might be less safe than Columbia County or Garfield County, resulting in inequality of facing danger for people living in those counties. 
+
+I calculated the means of jail population rate of different races and found out that people of color have a much higher means of jail population rate than white people. The mean is 749.58 for Asian/Asian Pacific people, 1166.67 for Latinx People, 1195.05 for Native Americans, 4393.67 for Black people, and only 318.50 for White people. This massive difference in jail population rate makes me suspect of the legislature's fairness over races of people. 
+
+***
+
+#### Section 3: 
+
+```{r section 3 chart, echo = FALSE, warning = FALSE, message = FALSE}
+plot_jail_pop_for_us()
+```
+
+**Is the total jail population in U.S. increasing or decreasing over time?**
+
+This chart shows that there is an overall increasing trend in the number of Jail populations in the U.S. from 1970 to 2018. Numerically, the amount of jail population has nearly quadrupled from less than 200,000 to 800,000. The growth of the jail population was relatively slow from 1970 to 1980 and suddenly grew at an increasing rate. 
+
+***
+
+#### Section 4:
+
+```{r section 4 chart, echo = FALSE, warning = FALSE, message = FALSE}
+plot_jail_pop_by_states(c("WA", "OR", "CA"))
+```
+
+**Among states in west region, which state has the highest total jail population?** 
+
+This chart shows that California has the highest total jail population among the three states over the years, while Oregon and Washington have similar patterns of trending and similar total jail populations. The trend of California's total jail population goes up and down at a greater magnitude, while the trend in Oregon and Washington is smoother. The total jail population in Washington and Oregon is much less than that of California. 
+
+***
+
+#### Section 5:
+```{r section 5 chart, echo = FALSE, warning = FALSE, message = FALSE}
+plot_average_jail_pop_rate(c("CA", "OR", "WA"))
+```
+
+**Is the pattern of jail population growth for states in the same region similar or not?**
+
+I choose three states from the west region to address this question and plot a bar chart on the average black jail population rate. This chart shows that Oregon has the maximum value of the average rate of black jail population from year to year among the three states in the west region. This significant difference displays an unequal pattern of jail population rate for black people. 
+
+***
+
+#### Section 6: 
+```{r section 6 chart, echo = FALSE, warning = FALSE, message = FALSE}
+plot_jail_map_by_states(c("CA","WA","OR"))
+plot_jail_map_by_states("CA")
+plot_jail_map_by_states("WA")
+plot_jail_map_by_states("OR")
+```
+
+**Which county has the lowest black prison admission count among those three states?**
+
+Focusing on the three western states, I plot a map for California, Washington, and Oregon separately to get a clearer picture. The charts show the black prison admission count for the selected states. I found out that even King county, which has the highest black prison admission count in Washington state, is relatively low compared to the counties in California. 
+
+##### References:
+[Vera Institute](https://www.vera.org/ending-mass-incarceration/criminalization-racial-disparities)
+
+[List of U.S. states and territories by GDP](https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_GDP)
