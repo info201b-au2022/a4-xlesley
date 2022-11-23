@@ -92,6 +92,6 @@ plot_jail_map_by_states("OR")
 Focusing on the three western states, I plot a map for California, Washington, and Oregon separately to get a clearer picture. The charts show the black prison admission count for the selected states. I found out that even King county, which has the highest black prison admission count in Washington state, is relatively low compared to the counties in California. 
 
 ##### References:
-[Vera Institute](https://www.vera.org/ending-mass-incarceration/criminalization-racial-disparities)
++ [Vera Institute](https://www.vera.org/ending-mass-incarceration/criminalization-racial-disparities)
 
-[List of U.S. states and territories by GDP](https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_GDP)
++ [List of U.S. states and territories by GDP](https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_GDP)
